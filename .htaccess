@@ -1,0 +1,14 @@
+RewriteEngine On
+RewriteBase /mars
+
+# redirect all php pages to my index.php
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond $1 !^(robots\.txt) [NC]
+RewriteCond $1 !\.(html|htm|txt|css|js|jpg|jpeg|png|gif|bmp|ico)$ [NC]
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+
+# redirect index.php to public
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !^/mars/public/
+RewriteCond $1 \.(html|htm|txt|css|js|jpg|jpeg|png|gif|bmp|ico)$ [NC] 
+RewriteRule ^(.*)$ public/$1 [L,QSA]
